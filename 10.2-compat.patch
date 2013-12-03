@@ -1,0 +1,11 @@
+--- origsrc/libcdio-paranoia-10.2+0.90/include/cdio/paranoia/cdda.h	2012-03-18 18:17:32.000000000 -0500
++++ src/libcdio-paranoia-10.2+0.90/include/cdio/paranoia/cdda.h	2013-01-28 23:56:18.525583000 -0600
+@@ -377,7 +377,7 @@ const char *strerror_tr[]={
+ #define cdda_track_preemp       cdio_cddap_track_preemp
+ #define cdda_disc_firstsector   cdio_cddap_disc_firstsector
+ #define cdda_disc_lastsector    cdio_cddap_disc_lastsector
+-#define cdrom_drive             cdrom_drive_t
++#define cdrom_drive             cdrom_drive_s
+ 
+ #endif /*DO_NOT_WANT_PARANOIA_COMPATIBILITY*/
+ 

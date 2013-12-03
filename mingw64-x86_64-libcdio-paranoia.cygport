@@ -1,0 +1,35 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-libcdio-paranoia"
+VERSION=10.2+0.90
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="CD-ROM control library for Win64 toolchain"
+DESCRIPTION="This CDDA reader distribution reads audio from the CD-ROM directly
+as data, with no analog step between, and writes the data to a file or pipe as
+.wav, .aifc or as raw 16 bit linear PCM."
+HOMEPAGE="http://www.gnu.org/software/libcdio/"
+SRC_URI="mirror://gnu/libcdio/libcdio-paranoia-${VERSION}.tar.gz"
+SRC_DIR="libcdio-paranoia-${VERSION}"
+PATCH_URI="10.2-compat.patch"
+
+DIFF_EXCLUDES="check_paranoia.sh"
+
+CYGCONF_ARGS="--without-versioned-libs"
+
+src_install() {
+	cd ${B}
+	cyginstall bin_PROGRAMS= man_MANS= libcdioincludedir=${CROSS_INCLUDEDIR}/cdio/paranoia
+
+	# for compatibility with 0.8x versions
+	echo "#include <cdio/paranoia/cdda.h>" >> ${D}${CROSS_INCLUDEDIR}/cdio/cdda.h
+	echo "#include <cdio/paranoia/paranoia.h>" >> ${D}${CROSS_INCLUDEDIR}/cdio/paranoia.h
+	# for compatibility with cdparanoia
+	echo "#include <cdio/paranoia/cdda.h>" >> ${D}${CROSS_INCLUDEDIR}/cdda_interface.h
+	echo "#include <cdio/paranoia/paranoia.h>" >> ${D}${CROSS_INCLUDEDIR}/cdda_paranoia.h
+	dosym libcdio_cdda.dll.a ${CROSS_LIBDIR}/libcdda_interface.dll.a
+	dosym libcdio_paranoia.dll.a ${CROSS_LIBDIR}/libcdda_paranoia.dll.a
+}
+
+KEEP_LA_FILES="none"
