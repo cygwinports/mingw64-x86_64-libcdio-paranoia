@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-libcdio-paranoia"
-VERSION=10.2+0.93+1
+VERSION=10.2+0.94+1
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="CD-ROM control library for Win64 toolchain"
