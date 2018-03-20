@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-libcdio-paranoia"
-VERSION=10.2+0.94+1
+VERSION=10.2+0.94+2
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="CD-ROM control library for Win64 toolchain"
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/libcdio/libcdio-paranoia-${VERSION}.tar.gz"
 SRC_DIR="libcdio-paranoia-${VERSION}"
 PATCH_URI="10.2-compat.patch"
 
-DIFF_EXCLUDES="check_paranoia.sh test"
+DIFF_EXCLUDES="check_paranoia.sh endian.sh test"
 
 CYGCONF_ARGS="--without-versioned-libs"
 
@@ -31,5 +31,3 @@ src_install() {
 	dosym libcdio_cdda.dll.a ${CROSS_LIBDIR}/libcdda_interface.dll.a
 	dosym libcdio_paranoia.dll.a ${CROSS_LIBDIR}/libcdda_paranoia.dll.a
 }
-
-KEEP_LA_FILES="none"
